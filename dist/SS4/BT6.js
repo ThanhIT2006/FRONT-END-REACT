@@ -1,0 +1,47 @@
+let listProducts = [
+    {
+        id: "P001",
+        name: "Ao thun",
+        price: 200000,
+        category: {
+            id: "C001",
+            name: "Thoi trang"
+        },
+        discount: 10
+    },
+    {
+        id: "P002",
+        name: "Quan jean",
+        price: 300000,
+        category: {
+            id: "C001",
+            name: "Thoi trang"
+        }
+    },
+    {
+        id: "P003",
+        name: "Giay the thao",
+        price: 500000,
+        category: {
+            id: "C002",
+            name: "The thao"
+        },
+        discount: 5
+    }
+];
+function getfinalprice(product) {
+    if (product.discount) {
+        return product.price - (product.price * product.discount / 100);
+    }
+    return product.price;
+}
+function printProductInfo(product) {
+    const finalPrice = getfinalprice(product);
+    console.log(`\tTen: ${product.name}
+    Gia goc: ${product.price} VND
+    Gia sau giam: ${finalPrice} VND
+    Danh muc: ${product.category.name}`);
+}
+listProducts.forEach(product => printProductInfo(product));
+export {};
+//# sourceMappingURL=BT6.js.map

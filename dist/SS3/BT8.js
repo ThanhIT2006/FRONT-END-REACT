@@ -1,4 +1,3 @@
-"use strict";
 function convertToNumber(value) {
     const num = Number(value);
     return isNaN(num) ? null : num;
@@ -36,4 +35,5 @@ console.log(subtract("10", 4));
 console.log(multiply("a", 2));
 console.log(divide("12", "4"));
 console.log(divide(10, 0));
+export {};
 //# sourceMappingURL=BT8.js.map

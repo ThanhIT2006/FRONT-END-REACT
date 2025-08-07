@@ -1,7 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 let Chuoi = "2";
 let So = 2;
+export {};
 // console.log("Chuoi == So",Chuoi==So);
 // console.log("Chuoi === So",Chuoi===So);
 //Giai Thich
