@@ -74,7 +74,7 @@ foundBooks.forEach(book => {
     console.log(book.getInfo());
 });
 library.deleteBookById(2);
-console.log("\nDanh sách sách sau khi xóa sách có id = 2:");
+console.log("\nDanh sach sach sau khi xoa sach co id = 2:");
 library.getBooks().forEach(book => {
     console.log(book.getInfo());
 });
