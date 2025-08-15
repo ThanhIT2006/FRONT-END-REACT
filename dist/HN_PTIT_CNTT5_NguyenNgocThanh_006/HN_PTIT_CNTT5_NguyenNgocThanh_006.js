@@ -34,45 +34,39 @@ class Movie {
     }
 }
 class ActionMovie extends Movie {
-    constructor(id, title, genre, ticketPrice, isShowing) {
-        super(id, title, genre, ticketPrice, isShowing);
-    }
     calculateTicketCost(quantity) {
         return this.ticketPrice * quantity;
     }
     getSpecialOffer() {
-        return ["Mien phi bap rang", "Tang poster"];
+        return ["Miễn phí bắp rang", "Tặng poster"];
     }
     getMovieInfo() {
-        return `Phim hanh dong gay can, ky xoa hoanh trang`;
+        return `Phim hành động gay cấn, kỹ xảo hoành tráng`;
     }
 }
 class ComedyMovie extends Movie {
-    constructor(id, title, genre, ticketPrice, isShowing) {
-        super(id, title, genre, ticketPrice, isShowing);
-    }
     calculateTicketCost(quantity) {
+        if (quantity > 4) {
+            return this.ticketPrice * quantity * 0.9; // giảm 10% nếu mua > 4 vé
+        }
         return this.ticketPrice * quantity;
     }
     getSpecialOffer() {
-        return ["Giam 10% cho nhom tren 4 nguoi"];
+        return ["Giảm 10% cho nhóm trên 4 người"];
     }
     getMovieInfo() {
-        return `Phim hai nhe nhang vui nhon`;
+        return `Phim hài nhẹ nhàng, vui nhộn`;
     }
 }
 class AnimationMovie extends Movie {
-    constructor(id, title, genre, ticketPrice, isShowing) {
-        super(id, title, genre, ticketPrice, isShowing);
-    }
     calculateTicketCost(quantity) {
         return this.ticketPrice * quantity;
     }
     getSpecialOffer() {
-        return ["Giam gia cho tre duoi 12 tuoi"];
+        return ["Giảm giá cho trẻ em dưới 12 tuổi"];
     }
     getMovieInfo() {
-        return `Phim hoat hinh voi hinh anh song dong`;
+        return `Phim hoạt hình với hình ảnh sống động`;
     }
 }
 class TicketBooking {
@@ -81,106 +75,106 @@ class TicketBooking {
     movie;
     quantity;
     totalPrice;
-    constructor(bookingId, audience, movie, quantity, totalPrice) {
+    constructor(bookingId, audience, movie, quantity) {
         this.bookingId = bookingId;
         this.audience = audience;
         this.movie = movie;
         this.quantity = quantity;
-        this.totalPrice = totalPrice;
+        this.totalPrice = movie.calculateTicketCost(quantity);
     }
     getDetail() {
-        return `Booking Id: ${this.bookingId}, Audience: ${this.audience}, Movie: ${this.movie},Quantity: ${this.quantity},TotalPrice: ${this.totalPrice}`;
+        return `Booking Id: ${this.bookingId}, Audience: ${this.audience.getDetail()}, Movie: ${this.movie.title}, Quantity: ${this.quantity}, TotalPrice: ${this.totalPrice}`;
     }
 }
 class Cinema {
-    movie;
-    audience;
+    movies;
+    audiences;
     bookings;
-    constructor(movie, audience, bookings) {
-        this.movie = movie;
-        this.audience = audience;
+    constructor(movies, audiences, bookings) {
+        this.movies = movies;
+        this.audiences = audiences;
         this.bookings = bookings;
     }
     addMovie() {
-        const id = this.movie.length + 1;
+        const id = this.movies.length + 1;
         const name = prompt("Nhập tên phim:") || "";
-        const genre = prompt("Chọn loại phim: 1. Hành động  2. Hài  3. Hoạt hình") || "";
-        const price = Number(prompt("Giá:"));
-        if (genre === "1") {
-            this.movie.push(new ActionMovie(id, name, genre, price, true));
+        const genreChoice = prompt("Chọn loại phim: 1. Hành động  2. Hài  3. Hoạt hình") || "";
+        const price = Number(prompt("Giá vé:"));
+        if (genreChoice === "1") {
+            this.movies.push(new ActionMovie(id, name, "Action", price, true));
         }
-        else if (genre === "2") {
-            this.movie.push(new ComedyMovie(id, name, genre, price, true));
+        else if (genreChoice === "2") {
+            this.movies.push(new ComedyMovie(id, name, "Comedy", price, true));
         }
-        else if (genre === "3") {
-            this.movie.push(new AnimationMovie(id, name, genre, price, true));
+        else if (genreChoice === "3") {
+            this.movies.push(new AnimationMovie(id, name, "Animation", price, true));
         }
         else {
             alert("Loại phim không hợp lệ!");
+            return;
         }
         alert("Thêm phim thành công!");
     }
     addAudience() {
-        const id = this.audience.length + 1;
+        const id = this.audiences.length + 1;
         const name = prompt("Tên Khán giả:") || "";
         const email = prompt("Email:") || "";
         const phone = prompt("Số điện thoại:") || "";
-        this.audience.push(new Audience(id, name, email, phone));
+        this.audiences.push(new Audience(id, name, email, phone));
         alert("Thêm khán giả thành công!");
     }
     bookTickets() {
-        const AudienceId = Number(prompt("Nhập ID Khán giả:"));
-        const Audience = this.findTicketBookingById(this.audience, AudienceId);
-        if (!Audience) {
+        const audienceId = Number(prompt("Nhập ID Khán giả:"));
+        const audience = this.findAudienceById(this.audiences, audienceId);
+        if (!audience) {
             alert("Không tìm thấy Khán giả!");
             return;
         }
-        let items = [];
-        let total = 0;
-        let more = true;
-        while (more) {
-            const movieId = Number(prompt("Nhập ID phim:"));
-            const quantity = Number(prompt("Nhập số lượng vé:"));
-            const movie = this.findTicketBookingById(this.movie, movieId);
-            if (!movie) {
-                alert("Phim không tồn tại!");
-            }
-            else {
-                total += items.reduce((sum, item) => sum + item.movie.ticketPrice * item.quantity, 0);
-                items.push({ movie, quantity });
-            }
-            more = confirm("Thêm phim khác vào đơn hàng?");
+        const movieId = Number(prompt("Nhập ID phim:"));
+        const movie = this.findMovieById(this.movies, movieId);
+        if (!movie) {
+            alert("Phim không tồn tại!");
+            return;
         }
-        const TicketBookingId = this.bookings.length + 1;
-        // const booking = new TicketBooking(TicketBookingId, Audience, items, total,);
-        // this.bookings.push(booking);
-        // alert("Đã tạo vé:\n" + booking.getDetail());
+        if (!movie.isShowing) {
+            alert("Phim này đã ngừng chiếu!");
+            return;
+        }
+        const quantity = Number(prompt("Nhập số lượng vé:"));
+        if (quantity <= 0 || isNaN(quantity)) {
+            alert("Số lượng vé không hợp lệ!");
+            return;
+        }
+        const bookingId = this.bookings.length + 1;
+        const booking = new TicketBooking(bookingId, audience, movie, quantity);
+        this.bookings.push(booking);
+        alert("Đã tạo vé:\n" + booking.getDetail());
     }
     cancelMovie() {
         const movieId = Number(prompt("Nhập ID phim cần hủy:"));
-        const movie = this.movie.find(m => m.id === movieId);
+        const movie = this.findMovieById(this.movies, movieId);
         if (!movie) {
             alert("Không tìm thấy phim!");
             return;
         }
-        this.movie = this.movie.filter(m => m.id !== movieId);
-        alert("Phim đã được hủy!");
+        movie.stopShow();
+        alert("Phim đã ngừng chiếu!");
     }
     listShowingMovies() {
-        const available = this.movie.filter(m => m.isShowing);
+        const available = this.movies.filter(m => m.isShowing);
         if (available.length === 0) {
-            alert("Không còn phim nào còn chiếu!");
+            alert("Không còn phim nào đang chiếu!");
             return;
         }
         let message = "Danh sách phim đang chiếu:\n";
         available.forEach(m => {
-            message += `- ${m.title}\n`;
+            message += `- ${m.title} (${m.genre})\n`;
         });
         alert(message);
     }
     listAudienceBookings() {
-        const AudienceId = Number(prompt("Nhập ID khách hàng:"));
-        const orders = this.bookings.filter(o => o.audience.id === AudienceId);
+        const audienceId = Number(prompt("Nhập ID khách hàng:"));
+        const orders = this.bookings.filter(o => o.audience.id === audienceId);
         if (orders.length === 0) {
             alert("Khách hàng này chưa có đơn hàng!");
             return;
@@ -191,8 +185,19 @@ class Cinema {
         const total = this.bookings.reduce((sum, o) => sum + o.totalPrice, 0);
         alert(`Tổng doanh thu: ${total}`);
     }
+    getMovieGenreCount() {
+        const genreCount = this.movies.reduce((acc, movie) => {
+            acc[movie.genre] = (acc[movie.genre] || 0) + 1;
+            return acc;
+        }, {});
+        let msg = "Số lượng phim theo thể loại:\n";
+        for (let genre in genreCount) {
+            msg += `${genre}: ${genreCount[genre]}\n`;
+        }
+        alert(msg);
+    }
     getMovieSpecialOffers(movieId) {
-        const movie = this.findTicketBookingById(this.movie, movieId);
+        const movie = this.findMovieById(this.movies, movieId);
         if (!movie) {
             alert("Không tìm thấy phim!");
             return;
@@ -204,6 +209,25 @@ class Cinema {
         }
         alert("Ưu đãi của phim:\n" + offers.join("\n"));
     }
+    searchById() {
+        const id = Number(prompt("Nhập ID để tìm kiếm:"));
+        let movie = this.findMovieById(this.movies, id);
+        if (movie) {
+            alert(`Thông tin phim:\n${movie.getMovieInfo()}\nGiá vé: ${movie.ticketPrice}`);
+            return;
+        }
+        let audience = this.findAudienceById(this.audiences, id);
+        if (audience) {
+            alert(`Thông tin khán giả:\n${audience.getDetail()}`);
+            return;
+        }
+        let booking = this.findTicketBookingById(this.bookings, id);
+        if (booking) {
+            alert(`Thông tin đặt vé:\n${booking.getDetail()}`);
+            return;
+        }
+        alert("Không tìm thấy dữ liệu!");
+    }
     findMovieById(collection, id) {
         return collection.find(item => item.id === id);
     }
@@ -211,7 +235,7 @@ class Cinema {
         return collection.find(item => item.id === id);
     }
     findTicketBookingById(collection, id) {
-        return collection.find(item => item.id === id);
+        return collection.find(item => item.bookingId === id);
     }
 }
 function MainMenu() {
@@ -224,8 +248,8 @@ function MainMenu() {
             "3. Đặt vé\n" +
             "4. Ngừng chiếu phim\n" +
             "5. Hiển thị danh sách phim đang chiếu\n" +
-            "6. Hiển thị các đặt vé của một khán giả \n" +
-            "7. Tính và hiển thị tổng doanh thu \n" +
+            "6. Hiển thị các đặt vé của một khán giả\n" +
+            "7. Tính và hiển thị tổng doanh thu\n" +
             "8. Đếm số lượng từng thể loại phim\n" +
             "9. Tìm kiếm và hiển thị thông tin bằng mã định danh\n" +
             "10. Hiển thị ưu đãi của một phim\n" +
@@ -239,6 +263,7 @@ function MainMenu() {
                 cinema.addMovie();
                 break;
             case 3:
+                cinema.bookTickets();
                 break;
             case 4:
                 cinema.cancelMovie();
@@ -253,10 +278,10 @@ function MainMenu() {
                 cinema.calculateTotalRevenue();
                 break;
             case 8:
+                cinema.getMovieGenreCount();
                 break;
             case 9:
-                const id = Number(prompt("Nhập ID để tìm kiếm:"));
-                cinema.findMovieById(cinema.movie, id);
+                cinema.searchById();
                 break;
             case 10:
                 const movieId = Number(prompt("Nhập ID phim:"));
