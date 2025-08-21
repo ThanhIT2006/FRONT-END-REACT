@@ -3,9 +3,8 @@
 // import Exercises03 from "./Components/Exercises03"
 // import Parent_Comp from "./Components/BT4/Parent_Comp"
 // import ParentComponent from "./Components/BT5/Parentcomponent";
-import ListPost from "./Components/BT6/ListPost";
+import ListPost from "./Components/BT6/ListPost"
 function App() {
-
   return (
     <>
       {/* <Exercises01 /> */}
