@@ -17,7 +17,6 @@ function App() {
       <BT5 />
       <BT6 />
       <BT7 />
-      
     </>
   )
 }
