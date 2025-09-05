@@ -1,6 +1,15 @@
 import Table from "react-bootstrap/Table";
-import "./Add";
-function Info() {
+import type { Bill } from "../Component/type";
+
+function Info({
+  bills,
+  onDeleteBill,
+  onEditBill,
+}: {
+  bills: Bill[];
+  onDeleteBill: (id: number) => void;
+  onEditBill: (bill: Bill) => void;
+}) {
   return (
     <div
       style={{
@@ -29,9 +38,35 @@ function Info() {
           </tr>
         </thead>
         <tbody>
-          <tr></tr>
-          <tr></tr>
-          <tr></tr>
+          {bills.length === 0 ? (
+            <tr>
+              <td colSpan={4} style={{ textAlign: "center" }}>
+                Chưa có hóa đơn nào
+              </td>
+            </tr>
+          ) : (
+            bills.map((bill) => (
+              <tr key={bill.id}>
+                <td>{bill.name}</td>
+                <td>{bill.amount.toLocaleString()}</td>
+                <td>{bill.status}</td>
+                <td>
+                  <button
+                    className="btn btn-warning btn-sm"
+                    onClick={() => onEditBill(bill)}
+                  >
+                    Sửa
+                  </button>{" "}
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => onDeleteBill(bill.id)}
+                  >
+                    Xóa
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </Table>
     </div>

@@ -1,87 +1,107 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import React, { useState } from "react";
-interface User {
-  id: number;
-  name: string;
-  price: string;
-  completed: boolean;
+import React, { useState, useEffect } from "react";
+import type { Bill } from "../Component/type";
+
+interface AddProps {
+  onAddBill: (bill: Bill) => void;
+  onUpdateBill: (bill: Bill) => void;
+  editingBill: Bill | null;
+  cancelEdit: () => void;
 }
-function Add() {
-  const [User, setUser] = useState<User[]>([]);
-  const [input, setInput] = useState("");
-  const [input2, setInput2] = useState("");
+
+function Add({ onAddBill, onUpdateBill, editingBill, cancelEdit }: AddProps) {
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [status, setStatus] = useState("Chưa Hoàn Thành");
   const [error, setError] = useState("");
   const [error2, setError2] = useState("");
-  const [completed, setCompleted] = useState(false);
-  const [editId, setEditId] = useState<number | null>(null);
-  const handleAdd = () => {
-    if (input.trim() === "") {
-      setError("Vui lòng nhập tên công việc!");
+
+  useEffect(() => {
+    if (editingBill) {
+      setName(editingBill.name);
+      setAmount(editingBill.amount.toString());
+      setStatus(editingBill.status);
+    }
+  }, [editingBill]);
+
+  const handleSubmit = () => {
+    if (name.trim() === "") {
+      setError("Vui lòng nhập tên chủ hộ!");
       return;
     }
-    if (input2.trim() === "") {
+    if (amount.trim() === "") {
       setError2("Vui lòng nhập số tiền!");
       return;
     }
-    if (completed === true) {
-      setCompleted(false);
-    }
+
     setError("");
     setError2("");
-    if (editId !== null) {
-      setUser(
-        User.map((user) =>
-          user.id === editId
-            ? { ...user, name: input, price: input2, completed: completed }
-            : user
-        )
-      );
-      setEditId(null);
+
+    if (editingBill) {
+      onUpdateBill({
+        ...editingBill,
+        name,
+        amount: Number(amount),
+        status,
+      });
     } else {
-      const newUser: User = {
+      const newBill: Bill = {
         id: Date.now(),
-        name: input,
-        price: input2,
-        completed: false,
+        name,
+        amount: Number(amount),
+        status,
       };
-      setUser([...User, newUser]);
+      onAddBill(newBill);
     }
-    setInput("");
-    setInput2("");
+
+    setName("");
+    setAmount("");
+    setStatus("Chưa Hoàn Thành");
   };
 
   return (
     <div
       style={{ marginTop: "30px", backgroundColor: "white", padding: "20px" }}
     >
-      <p>+ Thêm hóa đơn mới</p>
+      <p>{editingBill ? "✏️ Sửa hóa đơn" : "+ Thêm hóa đơn mới"}</p>
       <div className="add" style={{ display: "flex", gap: "20px" }}>
         <Form.Control
           style={{ width: "250px" }}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="Tên chủ hộ"
         />
 
         <Form.Control
           style={{ width: "250px" }}
-          value={input2}
-          onChange={(e) => setInput2(e.target.value)}
-          type="text"
-          placeholder="Số tiền "
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          type="number"
+          placeholder="Số tiền"
         />
 
-        <Form.Select style={{width:"200px"}} aria-label="Default select example">
-          <option value="1">Chưa Hoàn Thành</option>
-          <option value="2">Đã Hoàn Thành</option>
+        <Form.Select
+          style={{ width: "200px" }}
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option value="Chưa Hoàn Thành">Chưa Hoàn Thành</option>
+          <option value="Đã Hoàn Thành">Đã Hoàn Thành</option>
         </Form.Select>
-        <Button variant="primary" onClick={handleAdd}>
-          Thêm
+
+        <Button variant="primary" onClick={handleSubmit}>
+          {editingBill ? "Cập nhật" : "Thêm"}
         </Button>
-        <br />
+
+        {editingBill && (
+          <Button variant="secondary" onClick={cancelEdit}>
+            Hủy
+          </Button>
+        )}
       </div>
+
       <div
         className="alertError"
         style={{
