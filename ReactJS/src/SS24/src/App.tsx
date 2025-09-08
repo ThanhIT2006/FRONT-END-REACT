@@ -6,6 +6,9 @@ interface BodyProps {
   id: number;
   text: string;
 }
+
+// Đề 02
+
 function App() {
   const [Note, setNotes] = useState<BodyProps[]>([]);
   const [editingNote, setEditingNote] = useState<BodyProps | null>(null);
