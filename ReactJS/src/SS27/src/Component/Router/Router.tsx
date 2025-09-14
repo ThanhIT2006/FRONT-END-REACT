@@ -14,53 +14,53 @@ import Product from "../BT6/Product";
 const router = createBrowserRouter([
   {
     path: "/Home",
-    element: <Home />
+    element: <Home />,
   },
   {
     path: "/About",
-    element: <About />
+    element: <About />,
   },
   {
     path: "/Contact",
-    element: <Contact />
+    element: <Contact />,
   },
   {
     path: "/ProductList",
-    element: <ProductList />
+    element: <ProductList />,
   },
   {
     path: "/product/:id",
-    element: <ProductDetail />
+    element: <ProductDetail />,
   },
   {
     path: "/BT4/product/:id",
-    element: <ProductDetailBT4 />
+    element: <ProductDetailBT4 />,
   },
   {
     path: "/:",
-    element: <TaskList />
+    element: <TaskList />,
   },
   {
     path: "/:id",
-    element: <TaskDetail />
+    element: <TaskDetail />,
   },
-   {
+  {
     path: "/",
-    element: <Header/>,
+    element: <Header />,
     children: [
       {
         path: "homes",
-        element:<Homes/>
+        element: <Homes />,
       },
       {
-        path: "detail", 
-        element: <Detail />
+        path: "detail",
+        element: <Detail />,
       },
       {
         path: "product",
-        element: <Product />
+        element: <Product />,
       },
-    ]
+    ],
   },
 ]);
 export default router;
