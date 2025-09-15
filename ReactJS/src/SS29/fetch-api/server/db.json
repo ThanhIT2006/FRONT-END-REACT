@@ -1,0 +1,45 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "product_name": "iPhone 15 Pro",
+      "image": "https://example.com/images/iphone15pro.jpg",
+      "price": 1200,
+      "quantity": 10,
+      "created_at": "2025-09-01T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "product_name": "Samsung Galaxy S24",
+      "image": "https://example.com/images/galaxyS24.jpg",
+      "price": 1100,
+      "quantity": 15,
+      "created_at": "2025-09-02T14:30:00Z"
+    },
+    {
+      "id": 3,
+      "product_name": "MacBook Air M3",
+      "image": "https://example.com/images/macbookAirM3.jpg",
+      "price": 1500,
+      "quantity": 8,
+      "created_at": "2025-09-03T09:15:00Z"
+    },
+    {
+      "id": 4,
+      "product_name": "iPad Pro 2025",
+      "image": "https://example.com/images/ipadPro2025.jpg",
+      "price": 999,
+      "quantity": 20,
+      "created_at": "2025-09-05T16:45:00Z"
+    },
+    {
+      "id": 5,
+      "product_name": "Sony WH-1000XM6",
+      "image": "https://example.com/images/sonyXM6.jpg",
+      "price": 450,
+      "quantity": 25,
+      "created_at": "2025-09-10T11:20:00Z"
+    }
+  ]
+}
+

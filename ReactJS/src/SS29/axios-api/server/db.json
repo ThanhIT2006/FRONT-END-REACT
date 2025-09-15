@@ -1,0 +1,103 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "student_name": "Nguyen Van A",
+      "email": "vana@example.com",
+      "address": "Ha Noi",
+      "phone": "0901234567",
+      "status": true,
+      "created_at": "2025-09-01T08:30:00Z"
+    },
+    {
+      "id": "2",
+      "student_name": "Tran Thi B",
+      "email": "thib@example.com",
+      "address": "Ho Chi Minh City",
+      "phone": "0912345678",
+      "status": true,
+      "created_at": "2025-09-02T09:45:00Z"
+    },
+    {
+      "id": "3",
+      "student_name": "Le Van C",
+      "email": "vanc@example.com",
+      "address": "Da Nang",
+      "phone": "0923456789",
+      "status": false,
+      "created_at": "2025-09-03T14:20:00Z"
+    },
+    {
+      "id": "4",
+      "student_name": "Pham Thi D",
+      "email": "thid@example.com",
+      "address": "Hai Phong",
+      "phone": "0934567890",
+      "status": true,
+      "created_at": "2025-09-04T11:10:00Z"
+    },
+    {
+      "id": "5",
+      "student_name": "Hoang Van E",
+      "email": "vane@example.com",
+      "address": "Can Tho",
+      "phone": "0945678901",
+      "status": false,
+      "created_at": "2025-09-05T16:00:00Z"
+    },
+    {
+      "id": "8dec",
+      "student_name": "Nguyễn Văn F",
+      "email": "vanf@example.com",
+      "address": "Huế",
+      "phone": "0911222333",
+      "status": true,
+      "created_at": "2025-09-15T17:06:07.000Z"
+    },
+    {
+      "id": "5eea",
+      "student_name": "Nguyễn Văn F",
+      "email": "vanf@example.com",
+      "address": "Huế",
+      "phone": "0911222333",
+      "status": true,
+      "created_at": "2025-09-15T17:06:07.003Z"
+    },
+    {
+      "id": "75c2",
+      "student_name": "Nguyễn Văn F",
+      "email": "vanf@example.com",
+      "address": "Huế",
+      "phone": "0911222333",
+      "status": true,
+      "created_at": "2025-09-15T17:06:08.831Z"
+    },
+    {
+      "id": "e491",
+      "student_name": "Nguyễn Văn F",
+      "email": "vanf@example.com",
+      "address": "Huế",
+      "phone": "0911222333",
+      "status": true,
+      "created_at": "2025-09-15T17:06:08.834Z"
+    },
+    {
+      "id": "e72c",
+      "student_name": "Nguyễn Văn F",
+      "email": "vanf@example.com",
+      "address": "Huế",
+      "phone": "0911222333",
+      "status": true,
+      "created_at": "2025-09-15T17:06:12.146Z"
+    },
+    {
+      "id": "9584",
+      "student_name": "Nguyễn Văn F",
+      "email": "vanf@example.com",
+      "address": "Huế",
+      "phone": "0911222333",
+      "status": true,
+      "created_at": "2025-09-15T17:06:12.147Z"
+    }
+  ]
+}
