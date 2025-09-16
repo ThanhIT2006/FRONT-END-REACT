@@ -5,7 +5,7 @@ import { Modal, Button } from "react-bootstrap";
 
 function Todolist() {
   const [activeBtn, setActiveBtn] = useState<"all" | "done" | "doing">("all");
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(""); 
   const [error, setError] = useState(""); 
 
   interface ITodo {
