@@ -1,4 +1,3 @@
-import DeleteAll from "./DeleteAll";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
@@ -140,7 +139,10 @@ function Todolist() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <DeleteAll />
+       <div style={{display:"flex",justifyContent:"space-between", marginTop:"20px"}}>         
+        <Button style={{width:"210px"}} variant="danger">Xóa công việc hoàn thành</Button>         
+        <Button style={{width:"210px"}} variant="danger">Xóa tất cả công việc</Button>       
+      </div>   
       
     </div>
   );
