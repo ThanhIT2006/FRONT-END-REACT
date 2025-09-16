@@ -9,22 +9,22 @@ interface IProduct {
   created_at: string;
 }
 export default function B2() {
-const [products, setProducts] = useState<IProduct[]>([]);
-      const getAllProduct = () => {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const getAllProduct = () => {
     return fetch("http://localhost:3000/products")
       .then((res) => res.json())
       .then((data) => {
-        return data; 
+        return data;
       })
       .catch((err) => {
         console.error("Lỗi fetch:", err);
-        return []; 
+        return [];
       });
   };
 
   useEffect(() => {
     getAllProduct().then((data) => {
-      setProducts(data); 
+      setProducts(data);
     });
   }, []);
 

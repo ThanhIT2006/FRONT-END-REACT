@@ -1,0 +1,17 @@
+{
+  "todolist": [
+    {
+      "id": "1",
+      "title": "Quét nhà"
+    },
+    {
+      "id": "2",
+      "title": "Giặt quần áo"
+    },
+    {
+      "id": "28c8",
+      "title": "Nấu cơm",
+      "status": "doing"
+    }
+  ]
+}
