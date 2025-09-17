@@ -1,0 +1,25 @@
+{
+  "manager-post": [
+    {
+      "id": "1",
+      "title": "State trong ReactJS",
+      "image": "anh1",
+      "date": "17/9",
+      "status": true
+    },
+    {
+      "id": "2",
+      "title": "Tổng quan về ReactJS",
+      "image": "anh2",
+      "date": "17/9",
+      "status": true
+    },
+    {
+      "id": "d2a9",
+      "title": "abc",
+      "image": "abc",
+      "date": "17/9",
+      "status": true
+    }
+  ]
+}
