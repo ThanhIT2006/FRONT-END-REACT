@@ -77,7 +77,6 @@ export default function Manager_post() {
 
   return (
     <div>
-      {/* Giữ giao diện nhưng bỏ chức năng tìm kiếm */}
       <input
         style={{
           backgroundColor: "white",
