@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux"
+import type { CartType } from "../Store/Reducer/CartReducer"
 
 function CartTable() {
-
+    const cart=useSelector((state:CartType)=>{})
     return (
         <div style={{padding:"10px", width:"100%"}}>
             <table style={{width:"100%"}}>
