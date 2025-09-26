@@ -1,0 +1,25 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Lập Trình JavaScript Cơ Bản",
+      "author": "Nguyễn Văn A",
+      "year": 2021,
+      "category": 1
+    },
+    {
+      "id": 2,
+      "title": "Học ReactJS Từ Zero Đến Pro",
+      "author": "Trần Thị B",
+      "year": 2022,
+      "category": 2
+    },
+    {
+      "id": 3,
+      "title": "NodeJS Và Express Thực Chiến",
+      "author": "Lê Văn C",
+      "year": 2023,
+      "category": 3
+    }
+  ]
+}
