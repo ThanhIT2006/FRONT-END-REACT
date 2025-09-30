@@ -1,0 +1,43 @@
+{
+  "images": [
+    {
+      "id": "a86a",
+      "link": "https://res.cloudinary.com/df5vls8yc/image/upload/v1759165922/rpjycjvwuditn6ga4ywi.jpg",
+      "comment": "abc"
+    },
+    {
+      "id": "bbb1",
+      "link": "https://res.cloudinary.com/df5vls8yc/image/upload/v1759166231/cqf0unp2tjgudgkmvcdo.jpg",
+      "comment": ""
+    },
+    {
+      "id": "8a52",
+      "link": "https://res.cloudinary.com/df5vls8yc/image/upload/v1759166233/cybiq08ltk2ej6zbt9bs.jpg",
+      "comment": ""
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "iphone13",
+      "image": ""
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
